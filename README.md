@@ -31,13 +31,13 @@
 
 ## Overview
 
-Support Vector Machines (SVMs) are powerful classifiers — but the choice of **kernel function** fundamentally changes what the model learns. This tutorial investigates how three commonly used kernels (Linear, RBF, and Polynomial) produce different decision boundaries on the same real-world dataset, and what drives those differences.
+Support Vector Machines (SVMs) are powerful classifiers but the choice of **kernel function** fundamentally changes what the model learns. This tutorial investigates how three commonly used kernels (Linear, RBF, and Polynomial) produce different decision boundaries on the same real-world dataset, and what drives those differences.
 
 **The central question:**
-> *Given a real industrial dataset with overlapping, imbalanced classes, how does kernel choice change what the SVM learns — and when does each kernel fail?*
+> *Given a real industrial dataset with overlapping, imbalanced classes, how does kernel choice change what the SVM learns and when does each kernel fail?*
 
 **Why the Steel Plates Faults dataset?**
-With 27 geometric features, 7 fault types, severe class imbalance, and heavy feature overlap, this dataset is a genuinely challenging classification problem from a stainless steel manufacturing plant. It is far more representative of real-world conditions than the toy datasets typically used to demonstrate SVMs — and, to the best of our knowledge, has not previously been used as the basis for a kernel-comparison tutorial of this kind.
+With 27 geometric features, 7 fault types, severe class imbalance, and heavy feature overlap, this dataset is a genuinely challenging classification problem from a stainless steel manufacturing plant. It is far more representative of real-world conditions than the toy datasets typically used to demonstrate SVMs and, to the best of our knowledge, has not previously been used as the basis for a kernel-comparison tutorial of this kind.
 
 **What you will learn:**
 - How Linear, RBF, and Polynomial kernels create fundamentally different decision boundaries
@@ -56,7 +56,7 @@ With 27 geometric features, 7 fault types, severe class imbalance, and heavy fea
 | Polynomial (default, C=1, deg=3) | 70.4% | 70.7% | 0.677 |
 | **Best (GridSearchCV: RBF, C=1, γ=0.1)** | **77.6%** | **75.3%** | — |
 
-**Key finding:** The RBF kernel consistently outperforms Linear and Polynomial on this dataset. The performance gap is most pronounced on minority classes — RBF achieves F1=0.57 on the rare `Dirtiness` class versus Linear's F1=0.22, demonstrating that kernel choice has a disproportionate effect on underrepresented classes.
+**Key finding:** The RBF kernel consistently outperforms Linear and Polynomial on this dataset. The performance gap is most pronounced on minority classes RBF achieves F1=0.57 on the rare `Dirtiness` class versus Linear's F1=0.22, demonstrating that kernel choice has a disproportionate effect on underrepresented classes.
 
 ---
 
@@ -141,7 +141,7 @@ jupyter lab svm_kernel_tutorial.ipynb
 
 **The notebook is fully self-contained.** All figures are generated in-place. Expected total runtime on a standard laptop: **3–8 minutes** (the GridSearchCV cell is the longest step, approximately 2–4 minutes).
 
-> **Dataset loading:** The notebook first attempts to fetch the dataset automatically via `ucimlrepo` (requires internet). If unavailable, it falls back to the `faults.csv` file included in this repository. Either path produces identical results.
+> **Dataset loading:** The notebook loads the dataset directly from `faults.csv` using `pd.read_csv('faults.csv')`. Ensure `faults.csv` is placed in the same directory as the notebook before running. The file is included in this repository.
 
 ---
 
@@ -170,7 +170,7 @@ The notebook is structured as a complete, self-contained tutorial across 12 sect
 | Section | Description |
 |---|---|
 | **1. Environment Setup** | Imports, random seeds, colourblind-safe palette definition |
-| **2. Dataset Loading** | `ucimlrepo` primary loader with local CSV fallback; one-hot → integer label conversion |
+| **2. Dataset Loading** | `pandas` CSV loader (`pd.read_csv('faults.csv')`); one-hot → integer label conversion |
 | **3. Exploratory Data Analysis** | Class distribution, feature scaling motivation, PCA 2D projection |
 | **4. SVM Theory** | Margin maximisation, kernel trick, comparison table of all three kernels |
 | **5. Preprocessing** | Stratified train/test split, StandardScaler, Pipeline construction |
